@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Virtualenv
+.venv/
+env/
+venv/
+ENV/
+
+# Jupyter / notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs and temp files
+logs/
+*.log
+*.tmp
+*.bak
+
+# Env secrets
+.env
+
+# VS Code
+.vscode/
+
+# Airflow
+airflow.db
+airflow.cfg
+unittests.cfg
+.dags/
+
+# Output files (optional)
+data/news/
+output/
