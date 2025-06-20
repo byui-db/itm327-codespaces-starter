@@ -9,5 +9,8 @@
     "vscode": {
       "extensions": ["ms-python.python"]
     }
+  },
+  "containerEnv": {
+  "DBT_PROFILES_DIR": "/workspaces/itm327-codespaces-starter/dbt_config"
   }
 }
