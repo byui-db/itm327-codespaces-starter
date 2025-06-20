@@ -3,3 +3,4 @@ pymongo
 finnhub-python
 python-dotenv
 snowflake-connector-python
+dbt-core
