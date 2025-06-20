@@ -1,12 +1,10 @@
-name: 'itm327_dbt'
+name: 'itm327'
 version: '1.0'
 
 profile: 'default'
-
 config-version: 2
 
 model-paths: ["models"]
 
 models:
-  itm327_dbt:
-    +materialized: view
+  +materialized: view

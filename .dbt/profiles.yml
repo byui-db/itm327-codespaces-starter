@@ -1,0 +1,6 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /workspaces/itm327-codespaces-starter/dbt/duckdb/dev.duckdb
