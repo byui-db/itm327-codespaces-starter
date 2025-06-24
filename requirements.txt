@@ -5,3 +5,4 @@ python-dotenv
 snowflake-connector-python
 dbt-core
 dbt-duckdb
+Flask-Session
