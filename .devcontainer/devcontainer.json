@@ -15,5 +15,7 @@
   },
   "settings": {
   "terminal.integrated.cwd": "/workspaces/itm327-codespaces-starter/dbt"
+  },"containerEnv": {
+  "AIRFLOW_HOME": "/workspaces/itm327-codespaces-starter"
   }
 }
