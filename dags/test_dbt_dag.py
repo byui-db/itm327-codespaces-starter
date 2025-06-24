@@ -1,18 +1,17 @@
-from verify_airflow import DAG
-from airflow.operators.bash import BashOperator
-from datetime import datetime
+import unittest
+from airflow.models import DagBag
 
-default_args = {
-    'start_date': datetime(2025, 1, 1),
-}
+class TestDBTDag(unittest.TestCase):
+    def setUp(self):
+        self.dagbag = DagBag()
 
-with DAG('test_dbt_dag',
-         schedule_interval=None,
-         catchup=False,
-         default_args=default_args,
-         tags=['example']) as dag:
+    def test_dag_loaded(self):
+        dag_id = "your_dag_id_here"  # Replace with your actual DAG ID
+        self.assertIn(dag_id, self.dagbag.dags)
+        self.assertGreater(len(self.dagbag.dags[dag_id].tasks), 0)
 
-    run_dbt = BashOperator(
-        task_id='run_dbt',
-        bash_command='cd /workspaces/itm327-codespaces-starter/dbt && dbt run'
-    )
+    def test_no_import_errors(self):
+        self.assertEqual(len(self.dagbag.import_errors), 0, f"DAG import errors: {self.dagbag.import_errors}")
+
+if __name__ == '__main__':
+    unittest.main()
