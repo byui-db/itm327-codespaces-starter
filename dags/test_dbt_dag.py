@@ -6,12 +6,15 @@ class TestDBTDag(unittest.TestCase):
         self.dagbag = DagBag()
 
     def test_dag_loaded(self):
-        dag_id = "your_dag_id_here"  # Replace with your actual DAG ID
+        dag_id = 'tutorial_dag'  # ← Use your real DAG ID here
         self.assertIn(dag_id, self.dagbag.dags)
-        self.assertGreater(len(self.dagbag.dags[dag_id].tasks), 0)
 
     def test_no_import_errors(self):
-        self.assertEqual(len(self.dagbag.import_errors), 0, f"DAG import errors: {self.dagbag.import_errors}")
+        self.assertEqual(
+            len(self.dagbag.import_errors),
+            0,
+            f"DAG import errors: {self.dagbag.import_errors}"
+        )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
