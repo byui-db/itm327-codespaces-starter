@@ -19,5 +19,9 @@
   "AIRFLOW_HOME": "/workspaces/itm327-codespaces-starter"
   },"containerEnv": {
   "AIRFLOW__CORE__LOAD_EXAMPLES": "False"
+  },
+  "containerEnv": {
+  "AIRFLOW__CORE__LOAD_EXAMPLES": "False",
+  "AIRFLOW__CORE__DAGS_FOLDER": "/workspaces/itm327-codespaces-starter/dags"
   }
 }
