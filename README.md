@@ -30,7 +30,7 @@ This repo provides a full development environment for Apache Airflow and DBT —
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/itm327-codespaces-starter.git
+git clone https://github.com/byui-db/itm327-codespaces-starter.git
 cd itm327-codespaces-starter
 ```
 
@@ -40,7 +40,7 @@ Open the folder in VS Code.
 
 3. **Reopen in Container**
 
-When prompted, click **“Reopen in Container”**, or open the command palette and run:
+When prompted, click **“Reopen in Container”**, or open the command palette (shortcut Windows: Ctrl + Shift + P, Mac: Cmd + Shift + P) and run:
 
 ```
 Remote-Containers: Reopen in Container
@@ -78,13 +78,19 @@ Password: airflow
 To run DAG parsing and import tests:
 
 ```bash
-cd dags/
+cd /workspaces/itm327-codespaces-starter/dags
 python test_dbt_dag.py
 ```
 
 ---
 
 ## ✅ Environment Health Check
+
+To run to reset path:
+
+```bash
+cd /workspaces/itm327-codespaces-starter
+```
 
 Run this script to verify all dependencies and DAGs are correctly set up:
 
