@@ -1,28 +1,30 @@
 #!/bin/bash
 
 # Initialize Airflow DB
-echo "🔧 Initializing Airflow database..."
-airflow db init
-
-# Load environment variables
 set -e
 
-# load env vars
-if [ -f ".env" ]; then
-  export $(grep -v '^#' .env | xargs)
+# Load environment variables
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
 fi
 
-echo "Initializing Airflow DB..."
-airflow db init
+echo "📄 Checking for custom Airflow user credentials…"
 
-echo "Creating admin user..."
-airflow users create \
-  --username "${AIRFLOW_USERNAME:-admin}" \
-  --firstname Admin \
-  --lastname User \
-  --role Admin \
-  --email "${AIRFLOW_EMAIL:-admin@example.com}" \
-  --password "${AIRFLOW_PASSWORD:-changeme}"
+if [[ "$AIRFLOW_USERNAME" != "changeme" && "$AIRFLOW_PASSWORD" != "changeme" ]]; then
+    echo "🔑 Creating Airflow user with credentials from .env…"
+
+    airflow users create \
+        --username "$AIRFLOW_USERNAME" \
+        --password "$AIRFLOW_PASSWORD" \
+        --firstname "${AIRFLOW_FIRSTNAME:-User}" \
+        --lastname "${AIRFLOW_LASTNAME:-User}" \
+        --role Admin \
+        --email "${AIRFLOW_EMAIL:-user@example.com}"
+
+    echo "✅ Custom Airflow user created: $AIRFLOW_USERNAME"
+else
+    echo "⚠️ No custom credentials detected in .env. Using default admin/admin."
+fi
 
 echo "Airflow admin user created. You can log in at http://localhost:8080"
 
