@@ -1,110 +1,122 @@
-# 🚀 ITM 327 Codespaces + Docker Starter
+ITM 327 Codespaces Starter
 
-This repo provides a full development environment for Apache Airflow and DBT — ideal for building ETL pipelines with support for stock + news ingestion, MongoDB, and more.
+This repository provides a ready-to-use development environment for learning and practicing data warehousing and orchestration with Airflow, DBT, and Snowflake.
+It is designed to work in either GitHub Codespaces or locally with Docker Desktop & VS Code Remote Development.
+🎓 Recommended: Local setup with Docker Desktop & VS Code — no cost and full control.
 
----
+⸻
 
-## 🧰 What's Included
+🚀 Setup Options
 
-- **Apache Airflow**: Fully configured for local or remote development.
-- **DBT**: Analytics engineering ready out of the box.
-- **MongoDB integration**: Via `pymongo`.
-- **Finnhub client support**: For financial/market data.
-- **Docker-based dev container**: Easy to spin up locally.
-- **Airflow DAG examples**: With basic DAG testing setup.
+✅ Preferred: Local Setup with Docker & VS Code
 
----
+1️⃣ Install:
+	•	Docker Desktop
+	•	Visual Studio Code
+	•	VS Code Extension:
+        • Remote - Containers extension
 
-## 💻 Preferred Setup: Local Development with Docker
-
-> ✅ Free, fast, and doesn't require GitHub Codespaces credits.
-
-### Requirements
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Remote - Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-
-### Steps
-
-1. **Clone the Repository**
-
+2️⃣ Clone this repo:
 ```bash
-git clone https://github.com/byui-db/itm327-codespaces-starter.git
+git clone https://github.com/your-org/itm327-codespaces-starter.git
 cd itm327-codespaces-starter
 ```
 
-2. **Open in VS Code**
-
-Open the folder in VS Code.
-
-3. **Reopen in Container**
-
-When prompted, click **“Reopen in Container”**, or open the command palette (shortcut Windows: Ctrl + Shift + P, Mac: Cmd + Shift + P) and run:
-
-```
-Remote-Containers: Reopen in Container
-```
-
-This builds the environment using the `.devcontainer` folder.
-
-4. **Start Airflow**
-
-Once inside the container:
-
+3️⃣ Create a .env file in the root folder:
 ```bash
-# Initialize DB (only once)
-airflow db init
-
-# Start scheduler
-airflow scheduler
-
-# Start web server
-airflow webserver --port 8080
+cp .env.example .env
 ```
 
-Then open `http://localhost:8080` (or the forwarded port in VS Code).  
-Default credentials:
+Before initializing Airflow, open the `.env` file and set your desired admin username, password, and email:
 
+```dotenv
+AIRFLOW_USERNAME=admin
+AIRFLOW_PASSWORD=changeme
+AIRFLOW_EMAIL=yourname@example.com
 ```
-Username: airflow
-Password: airflow
-```
 
----
+4️⃣ Open the repo in VS Code:
+	•	Use “Remote-Containers: Open Folder in Container…”
+	•	VS Code will build and start the dev container.
 
-## 🧪 Test DAGs
-
-To run DAG parsing and import tests:
-
+5️⃣ Run the Airflow init script:
 ```bash
-cd /workspaces/itm327-codespaces-starter/dags
-python test_dbt_dag.py
+chmod +x ./init_airflow.sh
+./init_airflow.sh
 ```
 
----
+This will:
+✅ Initialize the Airflow DB
+✅ Create the admin user
+✅ Start Airflow webserver & scheduler
 
-## ✅ Environment Health Check
+6️⃣ Access Airflow:
+	•	Open browser at: http://localhost:8080
+	•	Login with the credentials from .env
 
-To run to reset path:
+⸻
 
+🌩️ Alternative: GitHub Codespaces
+
+1️⃣ Click “Use this template” → Open in Codespaces
+2️⃣ Codespaces prebuilds the dev container and installs dependencies.
+3️⃣ Create a .env file in the root folder as above.
+4️⃣ Run:
 ```bash
-cd /workspaces/itm327-codespaces-starter
+./init_airflow.sh
 ```
 
-Run this script to verify all dependencies and DAGs are correctly set up:
+5️⃣ Access Airflow via the forwarded port.
 
-```bash
-python verify_requirements.py
-```
+⸻
 
----
+📄 Project Contents
+	•	Airflow DAGs for stock + news ingestion.
+	•	DBT and MongoDB connection scaffolding.
+	•	A .devcontainer for preinstalled dependencies.
+	•	requirements.txt for Python packages.
+	•	.env.example for environment variables.
+	•	init_airflow.sh to bootstrap Airflow and admin user.
 
-## 🛰️ Optional: GitHub Codespaces Setup
+⸻
 
-> ⚠️ Codespaces may incur cost depending on usage. Consider local dev if you're on a budget.
+🔑 Environment Variables
 
-1. Click **“Use this template”** on GitHub.
-2. Choose **“Open in Codespaces”**.
-3. Let the dev container initialize.
-4. Use the pre-installed environment as described above.
+Create a .env file and configure:
+
+Variable	Example	Description
+AIRFLOW_ADMIN_USERNAME	admin	Airflow admin username
+AIRFLOW_ADMIN_PASSWORD	mypassword	Airflow admin password
+AIRFLOW_ADMIN_EMAIL	admin@example.com	Airflow admin email
+
+
+⸻
+
+🧰 Utilities
+
+🔷 Initialize Airflow
+
+./init_airflow.sh
+
+Runs:
+	•	airflow db init
+	•	Creates admin user
+	•	Starts webserver & scheduler
+
+🔷 Start Airflow Manually
+
+airflow webserver -p 8080 &
+airflow scheduler &
+
+
+⸻
+
+📚 Learning Objectives
+	•	Build and orchestrate ELT pipelines with Airflow and DBT.
+	•	Work with APIs, MongoDB, and Snowflake.
+	•	Create and transform star and snowflake schemas.
+	•	Produce dashboards or ML insights.
+
+⸻
+
+For questions or help, reach out to your instructor or check the course Canvas page.

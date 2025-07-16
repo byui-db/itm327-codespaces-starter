@@ -4,24 +4,19 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
+  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt && airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com",
   "customizations": {
     "vscode": {
       "extensions": ["ms-python.python"]
     }
   },
   "containerEnv": {
-  "DBT_PROFILES_DIR": "/workspaces/itm327-codespaces-starter/dbt_config"
+    "DBT_PROFILES_DIR": "/workspaces/itm327-codespaces-starter/dbt_config",
+    "AIRFLOW_HOME": "/workspaces/itm327-codespaces-starter",
+    "AIRFLOW__CORE__LOAD_EXAMPLES": "False",
+    "AIRFLOW__CORE__DAGS_FOLDER": "/workspaces/itm327-codespaces-starter/dags"
   },
   "settings": {
-  "terminal.integrated.cwd": "/workspaces/itm327-codespaces-starter/dbt"
-  },"containerEnv": {
-  "AIRFLOW_HOME": "/workspaces/itm327-codespaces-starter"
-  },"containerEnv": {
-  "AIRFLOW__CORE__LOAD_EXAMPLES": "False"
-  },
-  "containerEnv": {
-  "AIRFLOW__CORE__LOAD_EXAMPLES": "False",
-  "AIRFLOW__CORE__DAGS_FOLDER": "/workspaces/itm327-codespaces-starter/dags"
+    "terminal.integrated.cwd": "/workspaces/itm327-codespaces-starter/dbt"
   }
 }
