@@ -30,9 +30,12 @@ cp .env.example .env
 Before initializing Airflow, open the `.env` file and set your desired admin username, password, and email:
 
 ```dotenv
-AIRFLOW_USERNAME=admin
+# Airflow admin user settings
+AIRFLOW_USERNAME=changeme
 AIRFLOW_PASSWORD=changeme
-AIRFLOW_EMAIL=yourname@example.com
+AIRFLOW_FIRSTNAME=Jane
+AIRFLOW_LASTNAME=Doe
+AIRFLOW_EMAIL=jane.doe@example.com
 ```
 
 4️⃣ Open the repo in VS Code:
@@ -41,6 +44,7 @@ AIRFLOW_EMAIL=yourname@example.com
 
 5️⃣ Run the Airflow init script:
 ```bash
+cd ..
 chmod +x ./init_airflow.sh
 ./init_airflow.sh
 ```
@@ -56,67 +60,29 @@ This will:
 
 ⸻
 
-🌩️ Alternative: GitHub Codespaces
+## 🧪 Test DAGs
 
-1️⃣ Click “Use this template” → Open in Codespaces
-2️⃣ Codespaces prebuilds the dev container and installs dependencies.
-3️⃣ Create a .env file in the root folder as above.
-4️⃣ Run:
+To run DAG parsing and import tests:
+
 ```bash
-./init_airflow.sh
+cd /workspaces/itm327-codespaces-starter/dags
+python test_dbt_dag.py
 ```
 
-5️⃣ Access Airflow via the forwarded port.
-
 ⸻
 
-📄 Project Contents
-	•	Airflow DAGs for stock + news ingestion.
-	•	DBT and MongoDB connection scaffolding.
-	•	A .devcontainer for preinstalled dependencies.
-	•	requirements.txt for Python packages.
-	•	.env.example for environment variables.
-	•	init_airflow.sh to bootstrap Airflow and admin user.
+## ✅ Environment Health Check
+
+To run to reset path:
+
+```bash
+cd /workspaces/itm327-codespaces-starter
+```
+
+Run this script to verify all dependencies and DAGs are correctly set up:
+
+```bash
+python verify_requirements.py
+```
 
 ⸻
-
-🔑 Environment Variables
-
-Create a .env file and configure:
-
-Variable	Example	Description
-AIRFLOW_ADMIN_USERNAME	admin	Airflow admin username
-AIRFLOW_ADMIN_PASSWORD	mypassword	Airflow admin password
-AIRFLOW_ADMIN_EMAIL	admin@example.com	Airflow admin email
-
-
-⸻
-
-🧰 Utilities
-
-🔷 Initialize Airflow
-
-./init_airflow.sh
-
-Runs:
-	•	airflow db init
-	•	Creates admin user
-	•	Starts webserver & scheduler
-
-🔷 Start Airflow Manually
-
-airflow webserver -p 8080 &
-airflow scheduler &
-
-
-⸻
-
-📚 Learning Objectives
-	•	Build and orchestrate ELT pipelines with Airflow and DBT.
-	•	Work with APIs, MongoDB, and Snowflake.
-	•	Create and transform star and snowflake schemas.
-	•	Produce dashboards or ML insights.
-
-⸻
-
-For questions or help, reach out to your instructor or check the course Canvas page.
